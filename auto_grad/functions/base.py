@@ -15,10 +15,10 @@ class BaseOperation(abc.ABC):
 
     @classmethod
     def apply(cls, lhs, rhs=None):
-        from scalar import Value
+        from auto_grad.value import Value
 
         if not isinstance(lhs, Value):
-            raise ValueError('Left hand side must be a Value instance.')
+            raise TypeError('Left hand side must be a Value instance.')
 
         if rhs is not isinstance(rhs, Value):
             res = cls.forward(lhs.data, rhs)
