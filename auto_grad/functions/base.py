@@ -20,7 +20,7 @@ class BaseOperation(abc.ABC):
         if not isinstance(lhs, Value):
             raise TypeError('Left hand side must be a Value instance.')
 
-        if rhs is not isinstance(rhs, Value):
+        if not isinstance(rhs, Value):
             res = cls.forward(lhs.data, rhs)
             output = Value(res)
             lhs._calculate_gradient = lambda: cls.backward(lhs.data, rhs) * output.gradient
