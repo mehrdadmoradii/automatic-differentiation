@@ -1,11 +1,46 @@
 # AutoGrad Library
 
 ## Introduction
-AutoGrad is an automatic differentiation library tailored for educational purposes. Inspired by Andrej Karpathy's Micrograd, 
-it offers a practical and easy-to-understand approach to automatic differentiation, a fundamental concept in machine learning. 
-This library aims to demystify the inner workings of gradient computation and backpropagation in neural networks,
+AutoGrad is an automatic differentiation library tailored for educational purposes. Inspired by Andrej Karpathy's Micrograd, it offers a practical and easy-to-understand approach to automatic differentiation, a fundamental concept in machine learning. This library aims to demystify the inner workings of gradient computation and backpropagation in neural networks.
 
 ## Quick Start
+
+### Matrix Values
+
+AutoGrad now supports operations with matrices, enabling a wide range of mathematical computations. Below is an example illustrating basic matrix operations using AutoGrad:
+
+```python
+from auto_grad import AutogradMatrix
+
+
+# Defining matrices
+A = AutogradMatrix([
+    [1, 2],
+    [3, 4]
+])
+B = AutogradMatrix([
+    [5, 6],
+    [7, 8]
+])
+C = AutogradMatrix([
+    [9, 8],
+    [7, 6]
+])
+
+D = A @ B  # Matrix multiplication
+E = D * C  # Element-wise multiplication
+F = E + A.T  # Adding transpose of matrix A
+
+# Backpropagation
+F.start_backpropagation()
+
+# Accessing gradients
+print(A.gradient)  # Gradient of A after operations
+print(B.gradient)  # Gradient of B after operations
+print(C.gradient)  # Gradient of C after operations
+```
+
+### Scalar Values
 
 ```python
 from auto_grad.value import Value
