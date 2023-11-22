@@ -1,6 +1,6 @@
 import unittest
 
-from auto_grad.functions import (
+from autograd.functions import (
     Addition,
     Multiplication,
     Power,
@@ -9,7 +9,7 @@ from auto_grad.functions import (
     Relu,
 )
 
-from auto_grad.value import (
+from autograd.value import (
     Value,
 )
 

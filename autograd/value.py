@@ -1,4 +1,4 @@
-from auto_grad.functions import (
+from autograd.functions import (
     Addition,
     Multiplication,
     Power,

@@ -1,6 +1,6 @@
 import unittest
 
-from auto_grad.value import Value
+from autograd.value import Value
 
 
 class TestValueClass(unittest.TestCase):

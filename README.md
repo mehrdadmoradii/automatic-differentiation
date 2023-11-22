@@ -10,7 +10,7 @@ AutoGrad is an automatic differentiation library tailored for educational purpos
 AutoGrad now supports operations with matrices, enabling a wide range of mathematical computations. Below is an example illustrating basic matrix operations using AutoGrad:
 
 ```python
-from auto_grad import AutogradMatrix
+from autograd import AutogradMatrix
 
 
 # Defining matrices
@@ -43,7 +43,7 @@ print(C.gradient)  # Gradient of C after operations
 ### Scalar Values
 
 ```python
-from auto_grad.value import Value
+from autograd.value import Value
 
 a = Value(0.2)
 b = a * 3

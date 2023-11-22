@@ -33,7 +33,7 @@ class BaseFunction(abc.ABC):
 
     @classmethod
     def apply(cls, x, y=None):
-        from auto_grad.autograd_matrix import AutogradMatrix
+        from autograd import AutogradMatrix
 
         if not isinstance(x, AutogradMatrix):
             raise TypeError('Left hand side must be an AutogradMatrix instance.')
@@ -97,7 +97,7 @@ class MatrixMultiply(BaseFunction):
 
     @classmethod
     def apply(cls, x, y):
-        from auto_grad.autograd_matrix import AutogradMatrix
+        from autograd import AutogradMatrix
 
         if not isinstance(x, AutogradMatrix) and not isinstance(y, AutogradMatrix):
             raise TypeError('Both left and right hand sides must be an AutogradMatrix instance.')
@@ -116,7 +116,7 @@ class Power(BaseFunction):
 
     @classmethod
     def apply(cls, x, y):
-        from auto_grad.autograd_matrix import AutogradMatrix
+        from autograd import AutogradMatrix
 
         if not isinstance(x, AutogradMatrix):
             raise TypeError('Left hand side must be an AutogradMatrix instance.')
@@ -137,7 +137,7 @@ class Division(BaseFunction):
 
     @classmethod
     def apply(cls, x, y):
-        from auto_grad.autograd_matrix import AutogradMatrix
+        from autograd import AutogradMatrix
 
         if not isinstance(x, AutogradMatrix):
             raise TypeError('Left hand side must be an AutogradMatrix instance.')

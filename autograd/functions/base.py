@@ -15,7 +15,7 @@ class BaseOperation(abc.ABC):
 
     @classmethod
     def apply(cls, lhs, rhs=None):
-        from auto_grad.value import Value
+        from autograd import Value
 
         if not isinstance(lhs, Value):
             raise TypeError('Left hand side must be a Value instance.')

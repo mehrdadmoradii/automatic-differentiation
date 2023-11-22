@@ -1,8 +1,8 @@
 import unittest
 
-from auto_grad import AutogradMatrix
+from autograd import AutogradMatrix
 
-from auto_grad.matrix import autograd_functions as F
+from autograd.matrix import autograd_functions as F
 
 
 def eval_numerical_gradient_array_for_x(x, y, f, h=1e-5):
