@@ -1,3 +1,5 @@
+import math
+
 from typing import List
 
 
@@ -43,6 +45,60 @@ def multiply(x: List[List[float]], y: List[List[float]]) -> List[List[float]]:
     :return: Product of matrices
     """
     return [[sum(x[i][k] * y[k][j] for k in range(len(y))) for j in range(len(y[0]))] for i in range(len(x))]
+
+
+def divide(x: List[List[float]], y: List[List[float]]) -> List[List[float]]:
+    """
+    Divide one matrix (list of lists) by another.
+
+    :param x: First matrix
+    :param y: Second matrix
+    :return: Quotient of matrices
+    """
+    return [[x[i][j] / y[i][j] for j in range(len(x[0]))] for i in range(len(x))]
+
+
+def scalar_multiply(x: List[List[float]], y: float) -> List[List[float]]:
+    """
+    Multiply a matrix (list of lists) by a scalar.
+
+    :param x: Matrix
+    :param y: Scalar
+    :return: Product of matrix and scalar
+    """
+    return [[x[i][j] * y for j in range(len(x[0]))] for i in range(len(x))]
+
+
+def scalar_power(x: List[List[float]], y: float) -> List[List[float]]:
+    """
+    Raise a matrix (list of lists) to a scalar power.
+
+    :param x: Matrix
+    :param y: Scalar
+    :return: Matrix raised to scalar power
+    """
+    return [[x[i][j] ** y for j in range(len(x[0]))] for i in range(len(x))]
+
+
+def scalar_add(x: List[List[float]], y: float) -> List[List[float]]:
+    """
+    Add a scalar to a matrix (list of lists).
+
+    :param x: Matrix
+    :param y: Scalar
+    :return: Sum of matrix and scalar
+    """
+    return [[x[i][j] + y for j in range(len(x[0]))] for i in range(len(x))]
+
+
+def exp(x: List[List[float]]) -> List[List[float]]:
+    """
+    Compute the exponential of a matrix (list of lists).
+
+    :param x: Matrix
+    :return: Exponential of matrix
+    """
+    return [[math.exp(x[i][j]) for j in range(len(x[0]))] for i in range(len(x))]
 
 
 def transpose(x: List[List[float]]) -> List[List[float]]:

@@ -1,5 +1,5 @@
-from .autograd_matrix import AutogradMatrix
+from .matrix import Matrix
 
 __all__ = [
-    'AutogradMatrix',
+    'Matrix',
 ]

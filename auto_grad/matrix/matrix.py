@@ -2,11 +2,14 @@ from .functions import (
     multiply,
     transpose,
     add,
-    subtract,
     elementwise_multiply,
     matrix_of_zeros,
     matrix_of_ones,
     identity_matrix,
+    scalar_multiply,
+    scalar_power,
+    scalar_add,
+    exp,
 )
 
 from typing import (
@@ -63,22 +66,38 @@ class Matrix:
 
     def __add__(self, other: Union[int, float, 'Matrix']) -> 'Matrix':
         if isinstance(other, float) or isinstance(other, int):
-            return Matrix([[self._data[i][j] + other for j in range(len(self._data[0]))] for i in range(len(self._data))])
+            return Matrix(scalar_add(self._data, other))
         return Matrix(add(self._data, other._data))
 
     def __radd__(self, other):
         return self + other
 
-    def __sub__(self, other: 'Matrix') -> 'Matrix':
-        return Matrix(subtract(self._data, other._data))
+    def __sub__(self, other: Union[float, int, 'Matrix']) -> 'Matrix':
+        if isinstance(other, float) or isinstance(other, int):
+            return Matrix(scalar_add(self._data, other * -1))
+        return Matrix(add(self._data, scalar_multiply(other._data, -1)))
+
+    def __rsub__(self, other: 'Matrix') -> 'Matrix':
+        return other - self
 
     def __mul__(self, other: Union[float, int, 'Matrix']) -> 'Matrix':
         if isinstance(other, float) or isinstance(other, int):
-            return Matrix([[self._data[i][j] * other for j in range(len(self._data[0]))] for i in range(len(self._data))])
+            return Matrix(scalar_multiply(self._data, other))
         return Matrix(elementwise_multiply(self._data, other._data))
 
     def __rmul__(self, other: float) -> 'Matrix':
         return self * other
+
+    def __pow__(self, power: float) -> 'Matrix':
+        return Matrix(scalar_power(self._data, power))
+
+    def __neg__(self):
+        return self * -1
+
+    def __truediv__(self, other: Union[float, int, 'Matrix']) -> 'Matrix':
+        if isinstance(other, float) or isinstance(other, int):
+            return self * (other ** -1)
+        return self * (other ** -1)
 
     def mm(self, other: 'Matrix') -> 'Matrix':
         if self.shape[1] != other.shape[0]:
@@ -94,6 +113,12 @@ class Matrix:
     @property
     def T(self) -> 'Matrix':
         return self.transpose()
+
+    def exp(self) -> 'Matrix':
+        return Matrix(exp(self._data))
+
+    def sum(self) -> float:
+        return sum(sum(row) for row in self._data)
 
     @classmethod
     def zeros(cls, rows: int, cols: int) -> 'Matrix':
